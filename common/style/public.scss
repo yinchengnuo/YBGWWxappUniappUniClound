@@ -1,0 +1,76 @@
+$bg-color: #F8F8F8;
+$font-color: #333333;
+$theme-color: #007AFF;
+$app-nav-height: 159rpx;
+
+@mixin flex($c: row) { // flex布局
+	display: flex;
+	align-items: center;
+	flex-direction: $c;
+	justify-content: center;
+}
+
+.nav-bar {
+	width: 100%;
+	height: 66rpx;
+	position: relative;
+	.nav-bar-items {
+		@include flex();
+		height: 60rpx;
+		.nav-bar-item {
+			@include flex();
+			flex: 1;
+			height: 100%;
+			font-size: 36rpx;
+		}
+	}
+	.nav-bar-drog {
+		@include flex();
+		left: 0rpx;
+		bottom: 0rpx;
+		height: 8rpx;
+		width: 187.5rpx;
+		position: absolute;
+		text {
+			height: 100%;
+			width: 72rpx;
+			border-radius: 8rpx;
+			background: #FF0000;
+		}
+	}
+}
+.nav-view {
+	flex: 1;
+	width: 100%;
+	swiper {
+		width: 100%;
+		height: 100%;
+		.swiper-item {
+			float: left;
+			height: 100%;
+			overflow: scroll;
+			.test {
+				float: left;
+				width: 47vw;
+				height: 47vw;
+				background: #F1F1F1;
+				border-radius: 16rpx;
+				margin: 0 0 2vw 2vw;
+			}
+		}
+	}
+}
+
+.theme-color {
+	color: $theme-color;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.ellipsis { // 文字溢出打点换行
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
