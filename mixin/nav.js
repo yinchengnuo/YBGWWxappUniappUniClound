@@ -5,8 +5,12 @@ export default {
 			MIXIN_NowIndex: 0,
 			MIXIN_ActiveIndex: 0,
 			MIXIN_FinishedIndex: 0,
+			MIXIN_ScrollViewHeight: 0,
 			MIXIN_ScreenWidth: uni.getSystemInfoSync().screenWidth // 屏幕宽
 		}
+	},
+	mounted() {
+		this.$offset('.swiper').then(res => this.MIXIN_ScrollViewHeight = res.height)
 	},
 	methods: {
 		MIXIN_transition({ detail: { dx } }) {
@@ -18,5 +22,8 @@ export default {
 		MIXIN_animationfinish({ detail: { current } }) { // swiper 停止切换
 			this.MIXIN_FinishedIndex = this.MIXIN_NowIndex = current
 		},
+		MIXIN_SwitchNav(index) {
+			this.MIXIN_ActiveIndex = index
+		}
 	}
 }

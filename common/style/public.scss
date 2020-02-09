@@ -14,6 +14,7 @@ $app-nav-height: 159rpx;
 	width: 100%;
 	height: 66rpx;
 	position: relative;
+	margin-bottom: 4rpx;
 	.nav-bar-items {
 		@include flex();
 		height: 60rpx;
@@ -21,7 +22,11 @@ $app-nav-height: 159rpx;
 			@include flex();
 			flex: 1;
 			height: 100%;
-			font-size: 36rpx;
+			font-size: 32rpx;
+			&.active {
+				color: #FF0000;
+				font-size: 36rpx;
+			}
 		}
 	}
 	.nav-bar-drog {
@@ -29,7 +34,7 @@ $app-nav-height: 159rpx;
 		left: 0rpx;
 		bottom: 0rpx;
 		height: 8rpx;
-		width: 187.5rpx;
+		width: 150rpx;
 		position: absolute;
 		text {
 			height: 100%;
@@ -45,20 +50,64 @@ $app-nav-height: 159rpx;
 	swiper {
 		width: 100%;
 		height: 100%;
-		.swiper-item {
+		scroll-view {
 			float: left;
-			height: 100%;
-			overflow: scroll;
-			.test {
+			.item {
 				float: left;
 				width: 47vw;
 				height: 47vw;
-				background: #F1F1F1;
-				border-radius: 16rpx;
+				overflow: hidden;
 				margin: 0 0 2vw 2vw;
+				border-radius: 16rpx;
+				&.add {
+					@include flex();
+					color: #C0C0C0;
+					font-size: 240rpx;
+					box-sizing: border-box;
+					border: 1rpx solid #C0C0C0;
+				}
+			}
+			.nomore {
+				@include flex();
+				width: 100vw;
+				height: 66rpx;
 			}
 		}
 	}
+}
+
+.app-item {
+	@include flex();
+	width: 100%;
+	height: 88rpx;
+	font-size: 32rpx;
+	margin-top: 24rpx;
+	justify-content: space-between;
+	border-bottom: 1rpx solid #CCCCCC;
+	.left {
+		color: #FF0000;
+		font-size: 55rpx;
+	}
+}
+
+.good-info-item {
+	@include flex();
+	width: 100%;
+	height: 88rpx;
+	font-size: 32rpx;
+	margin-top: 24rpx;
+	justify-content: space-between;
+	border-bottom: 1rpx solid #CCCCCC;
+}
+
+.fixed-shop-car {
+	position: fixed;
+	right: -111rpx;
+	bottom: -111rpx;
+	border-radius: 50%;
+	width: 222rpx;
+	height: 222rpx;
+	background: rgba(0, 0, 0, .3);
 }
 
 .theme-color {
@@ -67,6 +116,10 @@ $app-nav-height: 159rpx;
 
 .bold {
 	font-weight: bold;
+}
+
+.margin-top {
+	margin-top: 24rpx;
 }
 
 .ellipsis { // 文字溢出打点换行

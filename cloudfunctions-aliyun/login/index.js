@@ -9,8 +9,5 @@ exports.main = async (event, context) => {
 			grant_type: 'authorization_code'
 		}
 	})
-	// const db = uniCloud.database()
-	// const collection = db.collection('user')
-	
 	return data
 }
