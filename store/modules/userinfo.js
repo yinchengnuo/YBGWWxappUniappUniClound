@@ -1,11 +1,12 @@
 export default {
 	namespaced: true,
 	state: {
-		isAdmin: false
+		openid: '',
+		isAdmin: false,
 	},
 	mutations: {
-		isAdmin(state, payload) {
-			state.isAdmin = payload
+		getUserinfo(state, payload) {
+			Object.assign(state, payload)
 		}
 	}
 }

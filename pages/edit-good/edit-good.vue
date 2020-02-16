@@ -42,7 +42,6 @@
 			}
 		},
 		onLoad(e) {
-			this.$route.query._id ? '' : this.$router.pop()
 			this.imgList = [this.$route.query.url]
 			this.name = this.$route.query.name
 			this.price = this.$route.query.price
@@ -51,17 +50,11 @@
 		methods: {
 			ChooseImage() { // 拍照
 				if (!this.imgList.length) {
-					uni.chooseImage({
-						count: 1,
-						success: (res) => this.imgList = res.tempFilePaths
-					})
+					uni.chooseImage({ sourceType: ['camera'], sizeType: ['compressed'] }).then(([, { tempFilePaths }]) => this.imgList = tempFilePaths)
 				}
 			},
 			ViewImage(e) { // 预览
-				uni.previewImage({
-					urls: this.imgList,
-					current: e.currentTarget.dataset.url
-				});
+				uni.previewImage({ urls: this.imgList })
 			},
 			DelImg(e) { // 删除图片
 				uni.showModal({
@@ -103,7 +96,7 @@
 					url = fileID
 				}
 				uniCloud.callFunction({
-					name: 'goodU',
+					name: 'good-U',
 					data: {
 						_id: this.$route.query._id,
 						data: {

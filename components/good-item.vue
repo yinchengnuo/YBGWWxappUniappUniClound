@@ -1,7 +1,7 @@
 <template>
-	<view class="good-item">
+	<view class="good-item" @tap="preview">
 		<image class="good-pic" :src="item.url" mode="aspectFill"></image>
-		<view class="edit-info" v-if="isEditMode">
+		<view class="edit-info" v-if="isEditMode" @tap.stop="">
 			<view class="edit" @tap="edit">
 				<text class="cuIcon-edit"></text>
 			</view>
@@ -9,7 +9,7 @@
 				<text class="cuIcon-delete"></text>
 			</view>
 		</view>
-		<view class="good-info">
+		<view class="good-info" @tap.stop="">
 			<view class="info">
 				<view class="name">{{ item.name }}</view>
 				<view>
@@ -18,9 +18,9 @@
 					<text>{{ item.unit }}</text>
 				</view>
 			</view>
-			<view class="shop-car">
+			<!-- <view class="shop-car">
 				<text class="cuIcon-cartfill"></text>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -38,26 +38,25 @@
 				uni.showModal({
 				    title: '确定删除此商品？',
 				    content: `${this.item.name}    ${this.item.price}元 / ${this.item.unit}`
-				}).then(([, res]) => {
+				}).then(async ([, res]) => {
 					if (res.confirm) {
 						uni.showLoading({ mask:true, title: '删除中...' })
-						uniCloud.callFunction({
-							name: 'goodD',
-							data: { _id: this.item._id }
-						}).then(({ result }) => {
-							uni.hideLoading()
-							uni.$emit(`REFRESH${this.item.type.split('-')[0]}`)
-							uni.showModal({ title: '删除成功', showCancel: false,
-								content: `${this.item.name}    ${this.item.price}元 / ${this.item.unit}`
-							})
+						await uniCloud.deleteFile({ fileList: [this.item.url] }) // 删除商品图片的云存储空间
+						await uniCloud.callFunction({ name: 'good-D', data: { _id: this.item._id } }) // 删除商品图片的数据库记录
+						uni.hideLoading()
+						uni.$emit(`REFRESH${this.item.type.split('-')[0]}`, 'noLoading')
+						uni.showModal({ title: '删除成功', showCancel: false,
+							content: `${this.item.name}    ${this.item.price}元 / ${this.item.unit}`
 						})
 					}
 				})
 			},
 			edit() { // 编辑商品
-				this.$router.push('/edit-good', {
-					...this.item
-				})
+				this.$router.push('/edit-good', { ...this.item })
+			},
+			preview() { // 预览商品图片
+				uni.showLoading({ mask: true })
+				uni.previewImage({ urls: [this.item.url] })
 			}
 		}
 	}

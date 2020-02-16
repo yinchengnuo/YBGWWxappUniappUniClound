@@ -1,2 +1,2 @@
-# AppID wxa04b44344aef0a1e
-# AppSecret 0cfd125e064536cb13a1dfc138163121
+# AppID wxad2d524677454fa5
+# AppSecret 8f3124df9bbd9475849985a0baa5193b

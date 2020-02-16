@@ -44,22 +44,15 @@
 		},
 		onLoad(e) {
 			this.type = this.$route.query.type
-			this.type ? '' : this.$router.pop()
 		},
 		methods: {
 			ChooseImage() { // 拍照
 				if (!this.imgList.length) {
-					uni.chooseImage({
-						count: 1,
-						success: (res) => this.imgList = res.tempFilePaths
-					})
+					uni.chooseImage({ sourceType: ['camera'], sizeType: ['compressed'] }).then(([, { tempFilePaths }]) => this.imgList = tempFilePaths)
 				}
 			},
-			ViewImage(e) { // 预览
-				uni.previewImage({
-					urls: this.imgList,
-					current: e.currentTarget.dataset.url
-				});
+			ViewImage(e) { // 预览图片
+				uni.previewImage({ urls: this.imgList })
 			},
 			DelImg(e) { // 删除图片
 				uni.showModal({
@@ -92,15 +85,15 @@
 					return
 				}
 				uni.showLoading({ mask:true, title: '添加中...' })
-				const { fileID } = await uniCloud.uploadFile({ filePath: this.imgList[0] })
+				const { fileID: url } = await uniCloud.uploadFile({ filePath: this.imgList[0] })
 				uniCloud.callFunction({
-					name: 'goodC',
+					name: 'good-C',
 					data: {
+						url,
 						type: this.type,
-						url: fileID,
+						unit: this.unit,
 						name: this.name,
 						price: this.price,
-						unit: this.unit,
 						addTime: Date.now()
 					},
 				}).then(({ result }) => {
@@ -113,6 +106,9 @@
 						uni.$emit(`REFRESH${this.type.split('-')[0]}`)
 						this.$router.pop()
 					})
+				}).catch(e => {
+					uni.hideLoading()
+					uni.showToast({ title: '上传失败，请联系成诺', icon: 'none' })
 				})
 			}
 		}

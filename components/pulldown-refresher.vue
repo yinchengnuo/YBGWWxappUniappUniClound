@@ -50,13 +50,13 @@
 					}
 				}, 10)
 			},
-			pulldown() {
+			pulldown(...args) {
 				const timer = setInterval(() => {
 					this.pulldownRefreshingTop += 4
 					if (this.pulldownRefreshingTop >= this.pullDownRefreshDistance) {
 						this.pulldownRefreshingTop = this.pullDownRefreshDistance
 						this.pulldownRefreshing = true
-						this.$emit('pulldownRefresh')
+						this.$emit('pulldownRefresh', ...args)
 						clearInterval(timer)
 					}
 				}, 10)

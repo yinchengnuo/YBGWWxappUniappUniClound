@@ -1,23 +1,9 @@
 <script>
 	export default {
 		async onLaunch() {
-			const isAdmin = openid => {
-				console.log(openid)
-				switch (openid) {
-					case 'oZ4LF5PZPyalw67t7Bzm79kXPrkY': return true // 忙着长大
-					case 'oZ4LF5Hi_iDCvLf0aL4EP4OfTiEk': return true // 尹记
-					case 'oZ4LF5Cd9lKLiVAzzFodL3ne2Lfg': return true // 爸
-					case '': return true // 妈
-					case 'oZ4LF5NL6yAtAYqJoh1wi3BvsgXY': return true // 娟娟
-					default: return false
-				}
-			}
-			const [, { code }] = await uni.login()
-			uniCloud.callFunction({
-				name: 'login',
-				data: { code }
-			}).then(({ result: { openid } }) => {
-				this.$store.commit('userinfo/isAdmin', isAdmin(openid))
+			const [, { code }] = await uni.login() // 获取 code
+			uniCloud.callFunction({ name: 'login', data: { code } }).then(({ result }) => { // 获用户信息
+				this.$store.commit('userinfo/getUserinfo', result)
 			})
 		},
 		onShow: function() {
@@ -25,6 +11,7 @@
 		},
 		onHide: function() {
 			console.log('App Hide')
+			uni.hideLoading()
 		}
 	}
 </script>

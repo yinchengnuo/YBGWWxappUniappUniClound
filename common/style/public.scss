@@ -80,7 +80,7 @@ $app-nav-height: 159rpx;
 	@include flex();
 	width: 100%;
 	height: 88rpx;
-	font-size: 32rpx;
+	font-size: 36rpx;
 	margin-top: 24rpx;
 	justify-content: space-between;
 	border-bottom: 1rpx solid #CCCCCC;
@@ -107,7 +107,7 @@ $app-nav-height: 159rpx;
 	border-radius: 50%;
 	width: 222rpx;
 	height: 222rpx;
-	background: rgba(0, 0, 0, .3);
+	background: rgba(0, 0, 0, .0);
 }
 
 .theme-color {

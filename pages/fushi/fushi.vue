@@ -29,6 +29,12 @@
 	import goodItem from '@/components/good-item.vue'
 	import pulldownRefresher from '@/components/pulldown-refresher.vue'
 	export default {
+		onShareAppMessage () {  //分享小程序
+			return {
+				title: '益百购物欢迎您！',
+				path: '/pages/fushi/fushi'
+			}
+		},
 		mixins: [MIXIN_Nav, MIXIN_List],
 		components: { goodItem, pulldownRefresher },
 		data() {
@@ -38,13 +44,12 @@
 			}
 		},
 		mounted() {
-			uni.$on('REFRESH1', () => this.$refs.pulldownRefresher.pulldown())
+			uni.$on('REFRESH1', noLoading => this.$refs.pulldownRefresher.pulldown(noLoading))
 		},
 		methods: {
-			refresh() { // 下拉刷新（请求数据）
-				uni.showLoading({ mask:true, title: '加载中...' })
-				uniCloud.callFunction({ name: 'goodR', data: { type: 1 },
-				}).then(({ result }) => {
+			refresh(noLoading) { // 下拉刷新（请求数据）
+				!noLoading && uni.showLoading({ mask:true, title: '加载中...' })
+				uniCloud.callFunction({ name: 'good-R', data: { type: 1 } }).then(({ result }) => {
 					uni.hideLoading()
 					this.lists = result
 					this.$refs.pulldownRefresher.pullup()
