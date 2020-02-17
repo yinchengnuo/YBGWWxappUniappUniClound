@@ -1,11 +1,11 @@
 <template>
 	<view class="add-good">
-		<view class="good-image" @tap="ChooseImage">
+		<view class="good-image" @tap="chooseImage">
 			<view class="cu-form-group">
 				<view class="grid col-4 grid-square flex-sub">
-					<view class="bg-img choose" v-for="(item,index) in imgList" :key="index" @tap="ViewImage" :data-url="imgList[index]">
+					<view class="bg-img choose" v-for="(item,index) in imgList" :key="index" @tap="viewImage" :data-url="imgList[index]">
 					 <image :src="imgList[index]" mode="aspectFill"></image>
-						<view class="cu-tag bg-red" @tap.stop="DelImg" :data-index="index">
+						<view class="cu-tag bg-red" @tap.stop="delImg" :data-index="index">
 							<text class='cuIcon-close'></text>
 						</view>
 					</view>
@@ -44,17 +44,18 @@
 		},
 		onLoad(e) {
 			this.type = this.$route.query.type
+			this.chooseImage() // 打开页面默认打开相机
 		},
 		methods: {
-			ChooseImage() { // 拍照
+			chooseImage() { // 拍照
 				if (!this.imgList.length) {
 					uni.chooseImage({ sourceType: ['camera'], sizeType: ['compressed'] }).then(([, { tempFilePaths }]) => this.imgList = tempFilePaths)
 				}
 			},
-			ViewImage(e) { // 预览图片
+			viewImage(e) { // 预览图片
 				uni.previewImage({ urls: this.imgList })
 			},
-			DelImg(e) { // 删除图片
+			delImg(e) { // 删除图片
 				uni.showModal({
 					title: '删除',
 					content: '确定删除这张商品图片嘛？',
@@ -85,11 +86,14 @@
 					return
 				}
 				uni.showLoading({ mask:true, title: '添加中...' })
-				const { fileID: url } = await uniCloud.uploadFile({ filePath: this.imgList[0] })
+				const { fileID: _url } = await uniCloud.uploadFile({ filePath: this.imgList[0] }) // 上传原图
+				const filePath = await this.$mini(this.imgList[0]) // 压缩图片
+				const { fileID: url } = await uniCloud.uploadFile({ filePath }) // 上传压缩原图
 				uniCloud.callFunction({
 					name: 'good-C',
 					data: {
 						url,
+						_url,
 						type: this.type,
 						unit: this.unit,
 						name: this.name,

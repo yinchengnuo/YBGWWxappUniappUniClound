@@ -41,7 +41,8 @@
 				}).then(async ([, res]) => {
 					if (res.confirm) {
 						uni.showLoading({ mask:true, title: '删除中...' })
-						await uniCloud.deleteFile({ fileList: [this.item.url] }) // 删除商品图片的云存储空间
+						await uniCloud.deleteFile({ fileList: [this.item.url] }) // 删除商品压缩图片的云存储空间
+						await uniCloud.deleteFile({ fileList: [this.item._url] }) // 删除商品原图片的云存储空间
 						await uniCloud.callFunction({ name: 'good-D', data: { _id: this.item._id } }) // 删除商品图片的数据库记录
 						uni.hideLoading()
 						uni.$emit(`REFRESH${this.item.type.split('-')[0]}`, 'noLoading')
@@ -56,7 +57,7 @@
 			},
 			preview() { // 预览商品图片
 				uni.showLoading({ mask: true })
-				uni.previewImage({ urls: [this.item.url] })
+				uni.previewImage({ urls: [this.item._url] })
 			}
 		}
 	}

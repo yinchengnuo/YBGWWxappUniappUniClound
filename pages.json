@@ -41,6 +41,12 @@
             "path" : "pages/location/location",
             "style" : {}
         }
+        ,{
+            "path" : "pages/login/login",
+            "style" : {
+				"navigationBarTitleText": "管理员登陆"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

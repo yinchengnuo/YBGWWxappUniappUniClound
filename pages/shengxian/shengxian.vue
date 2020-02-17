@@ -32,7 +32,7 @@
 		onShareAppMessage () {  //分享小程序
 			return {
 				title: '益百购物欢迎您！',
-				path: '/pages/fushi/fushi'
+				path: '/pages/shengxian/shengxian'
 			}
 		},
 		mixins: [MIXIN_Nav, MIXIN_List],
@@ -58,7 +58,7 @@
 			},
 			addGood(type) { // 点击添加商品
 				this.$router.push('/add-good', {
-					type: '2-' + (type + 1)
+					type: '3-' + (type + 1)
 				})
 			}
 		}

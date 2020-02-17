@@ -1,10 +1,12 @@
 <script>
 	export default {
 		async onLaunch() {
+			//#ifdef MP-WEIXIN
 			const [, { code }] = await uni.login() // 获取 code
 			uniCloud.callFunction({ name: 'login', data: { code } }).then(({ result }) => { // 获用户信息
 				this.$store.commit('userinfo/getUserinfo', result)
 			})
+			//#endif
 		},
 		onShow: function() {
 			console.log('App Show')

@@ -35,17 +35,19 @@
 	export default {
 		data() {
 			return {
-				imgList: [],
+				url: '',
+				unit: '',
 				name: '',
 				price: '',
-				unit: ''
+				imgList: []
 			}
 		},
 		onLoad(e) {
-			this.imgList = [this.$route.query.url]
+			this.url = this.$route.query.url
 			this.name = this.$route.query.name
-			this.price = this.$route.query.price
 			this.unit = this.$route.query.unit
+			this.price = this.$route.query.price
+			this.imgList = [this.$route.query._url]
 		},
 		methods: {
 			ChooseImage() { // 拍照
@@ -86,14 +88,19 @@
 					uni.showToast({ title: '商品单位不能为空', icon: 'none' })
 					return
 				}
-				let url
+				let url, _url
 				uni.showLoading({ mask:true, title: '修改中' })
 				if (this.imgList[0].match(/bsppub.oss-cn-shanghai.aliyuncs.com/g)) { // 如果是云存储图片
 					url = this.$route.query.url
+					_url = this.$route.query._url
 				} else { // 如果不是是云存储图片，表示图片发生变化
 					await uniCloud.deleteFile({ fileList: [this.$route.query.url] }) // 删除之前的云存储空间
-					const { fileID } = await uniCloud.uploadFile({ filePath: this.imgList[0] })
-					url = fileID
+					await uniCloud.deleteFile({ fileList: [this.$route.query._url] }) // 删除之前的云存储空间
+					const { fileID } = await uniCloud.uploadFile({ filePath: this.imgList[0] }) // 上传原图
+					_url = fileID
+					const filePath = await this.$mini(this.imgList[0]) // 压缩图片
+					const { fileID: miniUrl } = await uniCloud.uploadFile({ filePath }) // 上传压缩原图
+					url = miniUrl
 				}
 				uniCloud.callFunction({
 					name: 'good-U',
@@ -101,6 +108,7 @@
 						_id: this.$route.query._id,
 						data: {
 							url,
+							_url,
 							name: this.name,
 							price: this.price,
 							unit: this.unit

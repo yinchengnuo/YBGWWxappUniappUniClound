@@ -6,7 +6,8 @@
     "pages/wode/wode",
     "pages/edit-good/edit-good",
     "pages/add-good/add-good",
-    "pages/location/location"
+    "pages/location/location",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {
@@ -46,6 +47,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap80.json"
+  "usingComponents": {}
 }

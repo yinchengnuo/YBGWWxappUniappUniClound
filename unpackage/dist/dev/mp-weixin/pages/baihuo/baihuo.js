@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _baihuo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./baihuo.vue?vue&type=script&lang=js& */ 38);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _baihuo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _baihuo_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _baihuo_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./baihuo.vue?vue&type=style&index=0&lang=scss& */ 42);
-/* harmony import */ var _D_HBuilderXAlpha_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 20);
+/* harmony import */ var _D_HBuilderXAlpha_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 17);
 
 var renderjs
 
@@ -169,7 +169,7 @@ var _list = _interopRequireDefault(__webpack_require__(/*! @/mixin/list.js */ 41
 //
 //
 var goodItem = function goodItem() {return Promise.all(/*! import() | components/good-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/good-item")]).then(__webpack_require__.bind(null, /*! @/components/good-item.vue */ 86));};var pulldownRefresher = function pulldownRefresher() {return __webpack_require__.e(/*! import() | components/pulldown-refresher */ "components/pulldown-refresher").then(__webpack_require__.bind(null, /*! @/components/pulldown-refresher.vue */ 93));};var _default = { onShareAppMessage: function onShareAppMessage() {//分享小程序
-    return { title: '益百购物欢迎您！', path: '/pages/fushi/fushi' };}, mixins: [_nav.default, _list.default], components: { goodItem: goodItem, pulldownRefresher: pulldownRefresher }, data: function data() {return { navList: ['洗化', '百货', '针织', '五金', '烟花'], lists: [] };}, mounted: function mounted() {var _this = this;uni.$on('REFRESH2', function () {return _this.$refs.pulldownRefresher.pulldown();});}, methods: { refresh: function refresh() {var _this2 = this; // 下拉刷新（请求数据）
+    return { title: '益百购物欢迎您！', path: '/pages/baihuo/baihuo' };}, mixins: [_nav.default, _list.default], components: { goodItem: goodItem, pulldownRefresher: pulldownRefresher }, data: function data() {return { navList: ['洗化', '百货', '针织', '日用', '烟花'], lists: [] };}, mounted: function mounted() {var _this = this;uni.$on('REFRESH2', function () {return _this.$refs.pulldownRefresher.pulldown();});}, methods: { refresh: function refresh() {var _this2 = this; // 下拉刷新（请求数据）
       uni.showLoading({ mask: true, title: '加载中...' });uniCloud.callFunction({ name: 'good-R', data: { type: 2 } }).then(function (_ref) {var result = _ref.result;uni.hideLoading();_this2.lists = result;
         _this2.$refs.pulldownRefresher.pullup();
       });
@@ -179,7 +179,7 @@ var goodItem = function goodItem() {return Promise.all(/*! import() | components
         type: '2-' + (type + 1) });
 
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 12)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 30)["default"]))
 
 /***/ }),
 

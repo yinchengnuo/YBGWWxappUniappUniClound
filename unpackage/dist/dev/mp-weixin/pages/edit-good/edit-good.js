@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit_good_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit-good.vue?vue&type=script&lang=js& */ 47);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _edit_good_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _edit_good_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _edit_good_vue_vue_type_style_index_0_id_2faabbec_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit-good.vue?vue&type=style&index=0&id=2faabbec&lang=scss&scoped=true& */ 49);
-/* harmony import */ var _D_HBuilderXAlpha_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 20);
+/* harmony import */ var _D_HBuilderXAlpha_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 17);
 
 var renderjs
 
@@ -116,7 +116,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;} //
+/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;} //
 //
 //
 //
@@ -153,17 +153,19 @@ var _default =
 {
   data: function data() {
     return {
-      imgList: [],
+      url: '',
+      unit: '',
       name: '',
       price: '',
-      unit: '' };
+      imgList: [] };
 
   },
   onLoad: function onLoad(e) {
-    this.imgList = [this.$route.query.url];
+    this.url = this.$route.query.url;
     this.name = this.$route.query.name;
-    this.price = this.$route.query.price;
     this.unit = this.$route.query.unit;
+    this.price = this.$route.query.price;
+    this.imgList = [this.$route.query._url];
   },
   methods: {
     ChooseImage: function ChooseImage() {var _this = this; // 拍照
@@ -187,7 +189,7 @@ var _default =
         } });
 
     },
-    addGood: function () {var _addGood = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this3 = this;var url, _ref3, fileID;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (
+    addGood: function () {var _addGood = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this3 = this;var url, _url, _ref3, fileID, filePath, _ref4, miniUrl;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (
                 this.imgList.length) {_context.next = 3;break;}
                 uni.showToast({ title: '商品图片不能为空', icon: 'none' });return _context.abrupt("return");case 3:if (
 
@@ -206,12 +208,17 @@ var _default =
 
 
                 uni.showLoading({ mask: true, title: '修改中' });if (!
-                this.imgList[0].match(/bsppub.oss-cn-shanghai.aliyuncs.com/g)) {_context.next = 17;break;} // 如果是云存储图片
-                url = this.$route.query.url;_context.next = 24;break;case 17:_context.next = 19;return (
+                this.imgList[0].match(/bsppub.oss-cn-shanghai.aliyuncs.com/g)) {_context.next = 18;break;} // 如果是云存储图片
+                url = this.$route.query.url;
+                _url = this.$route.query._url;_context.next = 35;break;case 18:_context.next = 20;return (
 
-                  uniCloud.deleteFile({ fileList: [this.$route.query.url] }));case 19:_context.next = 21;return (
-                  uniCloud.uploadFile({ filePath: this.imgList[0] }));case 21:_ref3 = _context.sent;fileID = _ref3.fileID;
-                url = fileID;case 24:
+                  uniCloud.deleteFile({ fileList: [this.$route.query.url] }));case 20:_context.next = 22;return (
+                  uniCloud.deleteFile({ fileList: [this.$route.query._url] }));case 22:_context.next = 24;return (
+                  uniCloud.uploadFile({ filePath: this.imgList[0] }));case 24:_ref3 = _context.sent;fileID = _ref3.fileID; // 上传原图
+                _url = fileID;_context.next = 29;return (
+                  this.$mini(this.imgList[0]));case 29:filePath = _context.sent;_context.next = 32;return (
+                  uniCloud.uploadFile({ filePath: filePath }));case 32:_ref4 = _context.sent;miniUrl = _ref4.fileID; // 上传压缩原图
+                url = miniUrl;case 35:
 
                 uniCloud.callFunction({
                   name: 'good-U',
@@ -219,12 +226,13 @@ var _default =
                     _id: this.$route.query._id,
                     data: {
                       url: url,
+                      _url: _url,
                       name: this.name,
                       price: this.price,
                       unit: this.unit } } }).
 
 
-                then(function (_ref4) {var result = _ref4.result;
+                then(function (_ref5) {var result = _ref5.result;
                   uni.hideLoading();
                   uni.showModal({
                     title: '修改成功',
@@ -234,8 +242,8 @@ var _default =
                     uni.$emit("REFRESH".concat(_this3.$route.query.type.split('-')[0]));
                     _this3.$router.pop();
                   });
-                });case 25:case "end":return _context.stop();}}}, _callee, this);}));function addGood() {return _addGood.apply(this, arguments);}return addGood;}() } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 12)["default"]))
+                });case 36:case "end":return _context.stop();}}}, _callee, this);}));function addGood() {return _addGood.apply(this, arguments);}return addGood;}() } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 30)["default"]))
 
 /***/ }),
 

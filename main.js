@@ -17,6 +17,30 @@ Vue.prototype.$offset = function (selector) { // 获取元素宽高位置信息
 	})
 }
 
+Vue.prototype.$mini = src => { // 图片压缩方法
+	return new Promise(resolve => {
+		plus.io.getImageInfo({
+			src,
+			success(e) {
+				plus.zip.compressImage({
+					src,
+					quality: 66,
+					width: '24%',
+					height: '24%',
+					overwrite: true,
+					dst: `_doc/${Date.now()}.jpg`,
+					clip: {
+						top: `${Math.floor((1 - (e.width / e.height)) * 50)}%`,
+						height: `${Math.floor((e.width / e.height) * 100)}%`
+					}
+				}, e => {
+					resolve(e.target)
+				})
+			}
+		})
+	})
+}
+
 Vue.config.productionTip = false
 
 ;( new Vue( { ...App } ) ).$mount()

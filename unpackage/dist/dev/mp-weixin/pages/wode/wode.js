@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wode_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./wode.vue?vue&type=script&lang=js& */ 75);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _wode_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _wode_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _wode_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./wode.vue?vue&type=style&index=0&lang=scss& */ 77);
-/* harmony import */ var _D_HBuilderXAlpha_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 20);
+/* harmony import */ var _D_HBuilderXAlpha_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 17);
 
 var renderjs
 
@@ -116,7 +116,16 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -172,7 +181,16 @@ var _default =
     isAdmin: function isAdmin() {return this.$store.state.userinfo.isAdmin;} },
 
   created: function created() {
-    uni.startPullDownRefresh();
+    if (this.$store.state.userinfo.isAdmin) {
+      uni.startPullDownRefresh();
+    } else {
+
+
+
+
+      uni.startPullDownRefresh();
+
+    }
   },
   onPullDownRefresh: function onPullDownRefresh() {var _this = this;
     uniCloud.callFunction({ name: 'swiper-R' }).then(function (_ref) {var result = _ref.result;
@@ -196,23 +214,21 @@ var _default =
       uni.previewImage({ urls: this.swiperList, current: index });
     },
     changeSwiper: function changeSwiper() {var _this2 = this; // 更换轮播图
-      if (this.isAdmin) {// 只有管理员可以操作
-        uni.chooseImage({ sourceType: ['album'], sizeType: ['compressed'] }).then( /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref3) {var _ref5, tempFilePaths, data, i, _ref6, fileID, _i2;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_ref5 = _slicedToArray(_ref3, 2), tempFilePaths = _ref5[1].tempFilePaths; // 选择图片
-                    uni.showLoading({ mask: true, title: '更换中...' });
-                    data = [];
-                    i = 0;case 4:if (!(i < tempFilePaths.length)) {_context.next = 13;break;}_context.next = 7;return (
-                      uniCloud.uploadFile({ filePath: tempFilePaths[i] }));case 7:_ref6 = _context.sent;fileID = _ref6.fileID; // 选择图片后上传
-                    data.push(fileID);case 10:i++;_context.next = 4;break;case 13:_context.next = 15;return (
+      uni.chooseImage({ sourceType: ['album'], sizeType: ['compressed'] }).then( /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref3) {var _ref5, tempFilePaths, data, i, _ref6, fileID, _i2;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_ref5 = _slicedToArray(_ref3, 2), tempFilePaths = _ref5[1].tempFilePaths; // 选择图片
+                  uni.showLoading({ mask: true, title: '更换中...' });
+                  data = [];
+                  i = 0;case 4:if (!(i < tempFilePaths.length)) {_context.next = 13;break;}_context.next = 7;return (
+                    uniCloud.uploadFile({ filePath: tempFilePaths[i] }));case 7:_ref6 = _context.sent;fileID = _ref6.fileID; // 选择图片后上传
+                  data.push(fileID);case 10:i++;_context.next = 4;break;case 13:_context.next = 15;return (
 
-                      uniCloud.callFunction({ name: 'swiper-U', data: data }));case 15:
-                    _i2 = 0;case 16:if (!(_i2 < _this2.swiperList.length)) {_context.next = 22;break;}_context.next = 19;return (
-                      uniCloud.deleteFile({ fileList: [_this2.swiperList[_i2]] }));case 19:_i2++;_context.next = 16;break;case 22:
+                    uniCloud.callFunction({ name: 'swiper-U', data: data }));case 15:
+                  _i2 = 0;case 16:if (!(_i2 < _this2.swiperList.length)) {_context.next = 22;break;}_context.next = 19;return (
+                    uniCloud.deleteFile({ fileList: [_this2.swiperList[_i2]] }));case 19:_i2++;_context.next = 16;break;case 22:
 
-                    uni.startPullDownRefresh();case 23:case "end":return _context.stop();}}}, _callee, this);}));return function (_x) {return _ref4.apply(this, arguments);};}());
+                  uni.startPullDownRefresh();case 23:case "end":return _context.stop();}}}, _callee, this);}));return function (_x) {return _ref4.apply(this, arguments);};}());
 
-      }
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 12)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 30)["default"]))
 
 /***/ }),
 

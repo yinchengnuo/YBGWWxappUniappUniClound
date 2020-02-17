@@ -7,14 +7,14 @@
 		data() {
 			return {
 				scale: 17,
-				latitude: 32.597345,
-				longitude: 112.097519,
+				latitude: 32.597034,
+				longitude: 112.098133,
 				covers: [
 					{
 						width: 66,
 						height: 66,
-						latitude: 32.597345,
-						longitude: 112.097519,
+						latitude: 32.597034,
+						longitude: 112.098133,
 						iconPath: '../../static/marker.jpg',
 						callout: {
 							padding: 8,

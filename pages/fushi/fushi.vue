@@ -39,7 +39,7 @@
 		components: { goodItem, pulldownRefresher },
 		data() {
 			return {
-				navList: ['副食', '饮料', '酒水', '香烟', '粮油'],
+				navList: ['副食', '饮料', '酒水', '散点', '粮油'],
 				lists: []
 			}
 		},

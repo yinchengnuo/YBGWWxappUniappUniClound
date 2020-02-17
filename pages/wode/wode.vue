@@ -4,16 +4,18 @@
 			<open-data class="avatar" type="userAvatarUrl"></open-data>
 			<open-data class="nickname ellipsis" type="userNickName"></open-data>
 		</view>
-		<swiper @longpress="changeSwiper" :indicator-dots="true" :circular="true" :autoplay="true" :interval="3000" :duration="333">
+		<swiper :indicator-dots="true" :circular="true" :autoplay="true" :interval="3000" :duration="333">
 			<swiper-item v-for="(item, index) in swiperList" :key="index" @tap="preview(index)">
 				<image :src="item" mode="aspectFill"></image>
 			</swiper-item>
 		</swiper>
-		<navigator url="../location/location" class="app-item">
-			<text class="cuIcon-location left"></text>
-			<text class="center">商家地址</text>
-			<text class="cuIcon-right right"></text>
-		</navigator>
+		<!-- #ifndef APP-PLUS -->
+			<navigator url="../location/location" class="app-item">
+				<text class="cuIcon-location left"></text>
+				<text class="center">商家地址</text>
+				<text class="cuIcon-right right"></text>
+			</navigator>
+		<!-- #endif -->
 		<view class="app-item" @tap="callPhone">
 			<text class="cuIcon-phone left"></text>
 			<text class="center">联系店长</text>
@@ -29,11 +31,18 @@
 			<text class="center">我的订单</text>
 			<text class="cuIcon-right right"></text>
 		</view>
+		<!-- #ifdef APP-PLUS -->
+		<view v-if="isAdmin" class="app-item" @tap="changeSwiper">
+			<text class="cuIcon-refresh left"></text>
+			<text class="center">更换轮播图</text>
+			<text class="cuIcon-right"></text>
+		</view>
 		<view v-if="isAdmin" class="app-item">
 			<text class="cuIcon-edit left"></text>
-			<text class="center">编辑模式</text>
+			<text class="center">编辑商品模式</text>
 			<switch class="red" @change="switchChange" />
 		</view>
+		<!-- #endif -->
 	</view>
 </template>
 
@@ -54,7 +63,16 @@
 			isAdmin() { return this.$store.state.userinfo.isAdmin }
 		},
 		created() {
-			uni.startPullDownRefresh()
+			if (this.$store.state.userinfo.isAdmin) {
+				uni.startPullDownRefresh()
+			} else {
+				//#ifdef APP-PLUS
+					uni.reLaunch({ url: '../login/login' })
+				//#endif
+				//#ifndef APP-PLUS
+					uni.startPullDownRefresh()
+				//#endif
+			}
 		},
 		onPullDownRefresh() {
 			uniCloud.callFunction({ name: 'swiper-R'}).then(({ result }) => {
@@ -78,21 +96,19 @@
 				uni.previewImage({ urls: this.swiperList, current: index })
 			},
 			changeSwiper() { // 更换轮播图
-				if (this.isAdmin) { // 只有管理员可以操作
-					uni.chooseImage({ sourceType: ['album'], sizeType: ['compressed'] }).then(async ([, { tempFilePaths }]) => { // 选择图片
-						uni.showLoading({ mask: true, title: '更换中...' })
-						const data = []
-						for(let i = 0; i < tempFilePaths.length; i ++) {
-							const { fileID } = await uniCloud.uploadFile({ filePath: tempFilePaths[i] }) // 选择图片后上传
-							data.push(fileID)
-						}
-						await uniCloud.callFunction({ name: 'swiper-U', data }) // 上传成功后修改数据库
-						for(let i = 0; i < this.swiperList.length; i ++) {
-							await uniCloud.deleteFile({ fileList: [this.swiperList[i]] }) // 删除之前图片的云存储空间
-						}
-						uni.startPullDownRefresh()
-					})
-				}
+				uni.chooseImage({ sourceType: ['album'], sizeType: ['compressed'] }).then(async ([, { tempFilePaths }]) => { // 选择图片
+					uni.showLoading({ mask: true, title: '更换中...' })
+					const data = []
+					for(let i = 0; i < tempFilePaths.length; i ++) {
+						const { fileID } = await uniCloud.uploadFile({ filePath: tempFilePaths[i] }) // 选择图片后上传
+						data.push(fileID)
+					}
+					await uniCloud.callFunction({ name: 'swiper-U', data }) // 上传成功后修改数据库
+					for(let i = 0; i < this.swiperList.length; i ++) {
+						await uniCloud.deleteFile({ fileList: [this.swiperList[i]] }) // 删除之前图片的云存储空间
+					}
+					uni.startPullDownRefresh()
+				})
 			}
 		}
 	}

@@ -32,14 +32,14 @@
 		onShareAppMessage () {  //分享小程序
 			return {
 				title: '益百购物欢迎您！',
-				path: '/pages/fushi/fushi'
+				path: '/pages/baihuo/baihuo'
 			}
 		},
 		mixins: [MIXIN_Nav, MIXIN_List],
 		components: { goodItem, pulldownRefresher },
 		data() {
 			return {
-				navList: ['洗化', '百货', '针织', '五金', '烟花'],
+				navList: ['洗化', '百货', '针织', '日用', '烟花'],
 				lists: []
 			}
 		},
