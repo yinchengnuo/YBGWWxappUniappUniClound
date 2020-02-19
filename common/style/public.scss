@@ -10,6 +10,30 @@ $app-nav-height: 159rpx;
 	justify-content: center;
 }
 
+.roll {
+	@include flex();
+	width: 100%;
+	height: 44rpx;
+	color: #FA4B46;
+	background: #FDF7D3;
+	>text {
+		margin: 0 12rpx;
+		font-size: 36rpx;
+	}
+	.roll-view {
+		@include flex();
+		flex: 1;
+		height: 100%;
+		overflow: hidden;
+		justify-content: flex-start;
+		.roll-item {
+			font-size: 24rpx;
+			white-space: nowrap;
+			animation: right-left infinite linear 30s;
+		}
+	}
+}
+
 .nav-bar {
 	width: 100%;
 	height: 66rpx;

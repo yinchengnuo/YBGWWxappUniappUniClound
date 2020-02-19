@@ -1,1 +1,0 @@
-<view class="login data-v-08d3f266"><input type="text" password data-event-opts="{{[['input',[['__set_model',['','psw','$event',[]]]]]]}}" value="{{psw}}" bindinput="__e" class="data-v-08d3f266"/><button data-event-opts="{{[['tap',[['login',['$event']]]]]}}" bindtap="__e" class="data-v-08d3f266">登陆</button></view>

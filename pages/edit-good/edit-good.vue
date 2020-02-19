@@ -17,7 +17,7 @@
 		</view>
 		<view class="good-info-item">
 			<text>商品名称</text>
-			<input type="text" v-model="name" maxlength="6" placeholder="请输商品名称" />
+			<input type="text" v-model="name" maxlength="9" placeholder="请输商品名称" />
 		</view>
 		<view class="good-info-item">
 			<text>商品价格</text>

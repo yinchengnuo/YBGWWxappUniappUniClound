@@ -1,5 +1,16 @@
 <template>
 	<view class="fushi">
+		<view class="roll">
+			<text class="cuIcon-notification"></text>
+			<view class="roll-view">
+				<view class="roll-item">
+					疫情面前，咱不添乱。
+					需要调料、肉类、各种鲜菜类、丸子、饺子、鸡腿、鸭腿、砂糖橘苹果、🍌香蕉、梨🍐、橙子、柚子、等。
+					各种牛奶、散点、生瓜子、熟瓜子花生、各种粮食、大米、各种零食等。
+					微信留言或者打电话18837714565。下乡配送，龙堰益百购物超市。
+				</view>
+			</view>
+		</view>
 		<view class="nav-bar">
 			<view class="nav-bar-items">
 				<view v-for="(item, index) in navList" class="nav-bar-item" :class="{ active: MIXIN_ActiveIndex === index }" :key="index" @tap="MIXIN_SwitchNav(index)">{{ item }}</view>
@@ -68,5 +79,13 @@
 	.fushi {
 		@include flex(column);
 		height: 100%;
+	}
+	@keyframes right-left {
+		0% {
+			transform: translateX(682rpx);
+		}
+		100% {
+			transform: translateX(-100%);
+		}
 	}
 </style>

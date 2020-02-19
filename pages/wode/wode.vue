@@ -1,5 +1,16 @@
 <template>
 	<view class="wode">
+		<view class="roll">
+			<text class="cuIcon-notification"></text>
+			<view class="roll-view">
+				<view class="roll-item">
+					疫情面前，咱不添乱。
+					需要调料、肉类、各种鲜菜类、丸子、饺子、鸡腿、鸭腿、砂糖橘苹果、🍌香蕉、梨🍐、橙子、柚子、等。
+					各种牛奶、散点、生瓜子、熟瓜子花生、各种粮食、大米、各种零食等。
+					微信留言或者打电话18837714565。下乡配送，龙堰益百购物超市。
+				</view>
+			</view>
+		</view>
 		<view class="userinfo" @longpress="auth">
 			<open-data class="avatar" type="userAvatarUrl"></open-data>
 			<open-data class="nickname ellipsis" type="userNickName"></open-data>
@@ -9,6 +20,11 @@
 				<image :src="item" mode="aspectFill"></image>
 			</swiper-item>
 		</swiper>
+		<view class="app-item" @tap="willOpen">
+			<text class="cuIcon-search left"></text>
+			<input class="center" type="text" disabled placeholder="找不到商品？试试搜索..." />
+			<text class="cuIcon-right right"></text>
+		</view>
 		<!-- #ifndef APP-PLUS -->
 			<navigator url="../location/location" class="app-item">
 				<text class="cuIcon-location left"></text>
@@ -149,6 +165,22 @@
 				width: 100%;
 				height: 100%;
 			}
+		}
+		input {
+			width: 456rpx;
+			height: 66rpx;
+			font-size: 30rpx;
+			text-align: center;
+			border-radius: 33rpx;
+			border: 1rpx solid #C0C0C0;
+		}
+	}
+	@keyframes right-left {
+		0% {
+			transform: translateX(682rpx);
+		}
+		100% {
+			transform: translateX(-100%);
 		}
 	}
 </style>

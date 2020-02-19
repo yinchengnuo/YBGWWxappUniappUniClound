@@ -24,7 +24,7 @@ Vue.prototype.$mini = src => { // 图片压缩方法
 			success(e) {
 				plus.zip.compressImage({
 					src,
-					quality: 66,
+					quality: 24,
 					width: '24%',
 					height: '24%',
 					overwrite: true,

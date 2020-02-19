@@ -9,7 +9,7 @@
 				<text class="cuIcon-delete"></text>
 			</view>
 		</view>
-		<view class="good-info" @tap.stop="">
+		<view class="good-info">
 			<view class="info">
 				<view class="name">{{ item.name }}</view>
 				<view>
@@ -94,7 +94,7 @@
 			}
 		}
 		.good-info {
-			@include flex();
+			@include flex(column);
 			bottom: 0;
 			width: 100%;
 			padding: 12rpx;
@@ -102,12 +102,17 @@
 			color: #FFFFFF;
 			position: absolute;
 			box-sizing: border-box;
+			align-items: flex-start;
+			justify-content: flex-end;
 			background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .6));
 			.info {
 				flex: 1;
 				height: 100%;
 				.name, .price {
 					font-size: 36rpx;
+					&.name {
+						margin-top: 20rpx;
+					}
 				}
 			}
 			.shop-car {

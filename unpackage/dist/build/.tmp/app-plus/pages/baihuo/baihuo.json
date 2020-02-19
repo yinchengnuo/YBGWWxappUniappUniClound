@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "益百购物欢迎您（百货）",
-  "usingComponents": {
-    "good-item": "/components/good-item",
-    "pulldown-refresher": "/components/pulldown-refresher"
-  }
-}
