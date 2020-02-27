@@ -1,2 +1,6 @@
-# AppID wxad2d524677454fa5
-# AppSecret 8f3124df9bbd9475849985a0baa5193b
+![1](https://raw.githubusercontent.com/yinchengnuo/YBGWWxappUniappUniClound/master/md/1.jpg)
+![1](https://raw.githubusercontent.com/yinchengnuo/YBGWWxappUniappUniClound/master/md/2.jpg)
+![1](https://raw.githubusercontent.com/yinchengnuo/YBGWWxappUniappUniClound/master/md/3.jpg)
+![1](https://raw.githubusercontent.com/yinchengnuo/YBGWWxappUniappUniClound/master/md/4.jpg)
+![1](https://raw.githubusercontent.com/yinchengnuo/YBGWWxappUniappUniClound/master/md/5.jpg)
+![1](https://raw.githubusercontent.com/yinchengnuo/YBGWWxappUniappUniClound/master/md/6.jpg)

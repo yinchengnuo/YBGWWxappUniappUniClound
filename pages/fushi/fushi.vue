@@ -20,10 +20,10 @@
 		<view class="nav-view">
 			<pulldown-refresher ref="pulldownRefresher" @pulldownRefresh="refresh">
 				<swiper class="swiper" :duration="333" :current="MIXIN_ActiveIndex" @transition="MIXIN_transition" @change="MIXIN_change" @animationfinish="MIXIN_animationfinish">
-					<swiper-item v-for="(listItem, listIndex) in lists" :key="listIndex">
+					<swiper-item v-for="(value, key, index) in lists" :key="index">
 						<scroll-view scroll-y :style="{ height: MIXIN_ScrollViewHeight + 'px' }">
-							<view v-if="isEditMode" class="item add" @tap="addGood(listIndex)">+</view>
-							<good-item class="item" v-for="(item, index) in listItem" :key="index" :item="item" />
+							<view v-if="isEditMode" class="item add" @tap="addGood(index)">+</view>
+							<good-item class="item" v-for="(item, index) in value" :key="index" :item="item" />
 							<view class="nomore">没有更多了</view>
 						</scroll-view>
 					</swiper-item>
@@ -51,7 +51,7 @@
 		data() {
 			return {
 				navList: ['副食', '饮料', '酒水', '散点', '粮油'],
-				lists: []
+				lists: { 0: [], 1: [], 2: [], 3: [], 4: [] }
 			}
 		},
 		mounted() {
@@ -60,10 +60,18 @@
 		methods: {
 			refresh(noLoading) { // 下拉刷新（请求数据）
 				!noLoading && uni.showLoading({ mask:true, title: '加载中...' })
-				uniCloud.callFunction({ name: 'good-R', data: { type: 1 } }).then(({ result }) => {
-					uni.hideLoading()
-					this.lists = result
+				uniCloud.callFunction({ name: 'good-R', data: { type: 1 } }).then(async ({ result }) => {
 					this.$refs.pulldownRefresher.pullup()
+					this.lists[0] = result[0]
+					uni.hideLoading()
+					await new Promise(resolve => setTimeout(() => resolve(), 567))
+					this.lists[1] = result[1]
+					await new Promise(resolve => setTimeout(() => resolve(), 567))
+					this.lists[2] = result[2]
+					await new Promise(resolve => setTimeout(() => resolve(), 567))
+					this.lists[3] = result[3]
+					await new Promise(resolve => setTimeout(() => resolve(), 567))
+					this.lists[4] = result[4]
 				})
 			},
 			addGood(type) { // 点击添加商品
